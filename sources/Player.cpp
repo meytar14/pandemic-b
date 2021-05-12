@@ -4,6 +4,10 @@ namespace pandemic
 {
 Player& Player::drive(City city)
 {
+    if(city==current_city)
+    {
+        throw logic_error("you are already in this city");
+    }
     if(board.cities_conection[current_city].find(city)!=board.cities_conection[current_city].end())
     {
         current_city=city;
@@ -16,6 +20,10 @@ Player& Player::drive(City city)
 }
 Player& Player::fly_direct(City city)
 {
+    if(city==current_city)
+    {
+        throw logic_error("you are already in this city");
+    }
     if(cards.find(city)!=cards.end())
     {
         current_city=city;
@@ -30,6 +38,10 @@ Player& Player::fly_direct(City city)
 }
 Player& Player::fly_charter(City city)
 {
+    if(city==current_city)
+    {
+        throw logic_error("you are already in this city");
+    }
     if(cards.find(current_city)!=cards.end())
     {
         current_city=city;
@@ -44,6 +56,10 @@ Player& Player::fly_charter(City city)
 }
 Player& Player::fly_shuttle(City city)
 {
+    if(city==current_city)
+    {
+        throw logic_error("you are already in this city");
+    }
     if(board.research_stations.find(current_city)!=board.research_stations.end() &&board.research_stations.find(city)!=board.research_stations.end())
     {
         current_city=city;
@@ -61,16 +77,23 @@ Player& Player::build()
         board.research_stations.insert(current_city);
         cards.erase(current_city);
         board.not_in_deck.erase(current_city);//return the card to the deck
+    }else if(board.research_stations.find(current_city)==board.research_stations.end())
+    {
+        throw logic_error("you dont have this city card");
     }
     return *this;
 }
 Player& Player::discover_cure(Color color)
 {
-    if(board.research_stations.find(current_city)==board.research_stations.end())
+    if(board.research_stations.find(current_city)!=board.research_stations.end())
     {
         unordered_set<City>::iterator it;
         unordered_set<City> temp;
         bool is_five=false;
+        if(board.cured_desease.find(color)!=board.cured_desease.end())
+        {
+            return *this;
+        }
         for(auto& elm: cards)
         {
             if(board.city_colors[elm]==color)
@@ -92,7 +115,15 @@ Player& Player::discover_cure(Color color)
                 }
                 board.cured_desease.insert(color);
             }
+        else{
+            throw logic_error("you dont have 5 cards");
+        }
     }
+    return *this;
+}
+Player& Player::remove_cards()
+{
+    cards.clear();
     return *this;
 }
 Player& Player::treat(City city)
@@ -100,6 +131,9 @@ Player& Player::treat(City city)
     if(current_city!=city)
     {
         throw logic_error("the city is not your current city");
+    }
+    if(board.cured_cities.find(city)!=board.cured_cities.end()){//if num of cubes=0
+        throw logic_error("this city is already cured");
     }
     if(board.cured_desease.find(board.city_colors[current_city])!=board.cured_desease.end())
     {

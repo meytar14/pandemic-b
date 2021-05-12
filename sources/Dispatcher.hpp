@@ -15,7 +15,7 @@ namespace pandemic
         {
             
         }
-        Player& Dispatcher::fly_direct(City city);
+        Player& fly_direct(City city);
 
     };
 }

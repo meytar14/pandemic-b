@@ -10,6 +10,10 @@ namespace pandemic
             unordered_set<City>::iterator it;
             unordered_set<City> temp;
             bool is_five=false;
+            if(board.cured_desease.find(color)!=board.cured_desease.end())
+            {
+            return *this;
+            }
             for(auto& elm: cards)
             {
                 if(board.city_colors[elm]==color)
@@ -30,6 +34,9 @@ namespace pandemic
                     board.not_in_deck.erase(elm);//return the card to the deck
                 }
                 board.cured_desease.insert(color);
+            }
+            else{
+                throw logic_error("you dont have 5 cards");
             }
         }
         return *this;

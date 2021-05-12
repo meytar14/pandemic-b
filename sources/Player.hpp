@@ -33,6 +33,7 @@ class Player
     virtual Player& treat(City city);
     string role();
     Player& take_card(City city);
+    Player& remove_cards();
 
 
 };

@@ -8,6 +8,11 @@ namespace pandemic
     {
             unordered_set<City>::iterator it;
             unordered_set<City> temp;
+            if(board.cured_desease.find(color)!=board.cured_desease.end())
+            {
+            return *this;
+            }
+            bool has_five=false;
             for(auto& elm: cards)
             {
                 if(board.city_colors[elm]==color)
@@ -16,14 +21,21 @@ namespace pandemic
                 }
                 if(temp.size()==5)
                 {
+                    has_five=true;
                     break;
                 }
             }
-            for(auto& elm: temp)
+            if(has_five)
             {
-                cards.erase(elm);
+                for(auto& elm: temp)
+                {
+                    cards.erase(elm);
+                }
+                board.cured_desease.insert(color);
             }
-            board.research_stations.insert(current_city);
+            else{
+                throw logic_error("you dont have five cards");
+            }
         return *this;
     }
 }

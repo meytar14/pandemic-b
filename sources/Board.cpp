@@ -85,6 +85,7 @@ namespace pandemic
         if(color=="Yellow"){return Color::Yellow;}
         if(color=="Red"){return Color::Red;}
         if(color=="Blue"){return Color::Blue;}
+        return Color::Blue;
     }
     string Board::color_to_string(Color color)const
     {
@@ -92,6 +93,7 @@ namespace pandemic
         if(color==Color::Yellow){return "Yellow";}
         if(color== Color::Red){return "Red";}
         if(color==Color::Blue){return "Blue";}
+        return "Red";
     }
 
      City Board::string_to_city(string city)
@@ -144,6 +146,7 @@ namespace pandemic
     if(city== "Tehran" ){return City:: Tehran ;}
     if(city== "Tokyo" ){return City:: Tokyo ;}
     if(city== "Washington " ){return City:: Washington ;}
+    return City::Algiers;
     }
 
      string Board::city_to_string(City city) const
@@ -196,6 +199,7 @@ if(city==City:: Taipei ){return " Taipei " ;}
 if(city==City:: Tehran ){return " Tehran " ;}
 if(city==City:: Tokyo ){return " Tokyo " ;}
 if(city==City:: Washington ){return " Washington " ;}
+return "Shanghai";
     }
 
 }

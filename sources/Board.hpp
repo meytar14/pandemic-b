@@ -12,11 +12,11 @@ class Board
 
 
 public:
-    Color Board::string_to_color(string color);
-    string Board::city_to_string(City city) const;
-    string Board::color_to_string(Color color)const;
+    Color string_to_color(string color);
+    string city_to_string(City city) const;
+    string color_to_string(Color color)const;
     void read_cities();
-    City Board::string_to_city(string city);
+    City string_to_city(string city);
     unordered_map<City,Color>city_colors;
     unordered_map<City,unordered_set<City>> cities_conection;
     

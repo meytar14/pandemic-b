@@ -3,9 +3,9 @@
 # To use it, you should put all your cpp and hpp files in the SOURCE_PATH folder.
 # Thanks to Michael Trushkin for the idea!
 
-SOURCE_PATH=Board.cpp Dispatcher.cpp FieldDoctor.cpp GeneSplicer.cpp Medic.cpp OperationsExpert.cpp Player.cpp Researcher.cpp Scientist.cpp Virologist.cpp Board.hpp Dispatcher.hpp FieldDoctor.hpp GeneSplicer.hpp Medic.hpp, OperationsExpert.hpp, Player.hpp, Researcher.hpp, Scientist.hpp, Virologist.hpp, City.hpp, Color.hpp 
+SOURCE_PATH=sources
 OBJECT_PATH=objects
-CXX=clang++-9 
+CXX=clang++-9 -g
 CXXVERSION=c++2a
 CXXFLAGS=-std=$(CXXVERSION) -Werror -Wsign-conversion -I$(SOURCE_PATH)
 TIDY_FLAGS=-extra-arg=-std=$(CXXVERSION) -checks=bugprone-*,clang-analyzer-*,cppcoreguidelines-*,performance-*,portability-*,readability-*,-cppcoreguidelines-pro-bounds-pointer-arithmetic,-cppcoreguidelines-owning-memory --warnings-as-errors=*

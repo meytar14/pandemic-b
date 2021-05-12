@@ -6,6 +6,10 @@ namespace pandemic
 {
     Player& Medic::drive(City city)
 {
+    if(city==current_city)
+    {
+        throw logic_error("you are already in this city");
+    }
     if(board.cities_conection[current_city].find(city)!=board.cities_conection[current_city].end())
     {
         current_city=city;
@@ -23,6 +27,10 @@ namespace pandemic
 }
 Player& Medic::fly_direct(City city)
 {
+    if(city==current_city)
+    {
+        throw logic_error("you are already in this city");
+    }
     if(cards.find(city)!=cards.end())
     {
         current_city=city;
@@ -41,6 +49,10 @@ Player& Medic::fly_direct(City city)
 }
 Player& Medic::fly_charter(City city)
 {
+    if(city==current_city)
+    {
+        throw logic_error("you are already in this city");
+    }
     if(cards.find(current_city)!=cards.end())
     {
         current_city=city;
@@ -59,6 +71,10 @@ Player& Medic::fly_charter(City city)
 }
 Player& Medic::fly_shuttle(City city)
 {
+    if(city==current_city)
+    {
+        throw logic_error("you are already in this city");
+    }
     if(board.research_stations.find(current_city)!=board.research_stations.end() &&board.research_stations.find(city)!=board.research_stations.end())
     {
         current_city=city;
@@ -76,6 +92,9 @@ Player& Medic::fly_shuttle(City city)
 
 Player& Medic::treat(City city)
 {
+    if(board.cured_cities.find(city)!=board.cured_cities.end()){//if num of cubes=0
+        throw logic_error("this city is already cured");
+    }
     if(current_city!=city)
     {
         throw logic_error("the city is not your current city");
