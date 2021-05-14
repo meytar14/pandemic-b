@@ -9,25 +9,25 @@ namespace pandemic
 {
     void Board::read_cities()
     {
-        ifstream cities_file{"cities.txt"};
+        ifstream cities_file{"cities_map.txt"};
         string city,neighbor,color;
         City c,n;
         Color col;
         
         for(int i=0;i<48;i++)
         {
+            string l;
+            getline(cities_file,l,'\n');
+            stringstream line(l);
             unordered_set<City> neighbors;
-            cities_file>>city>>color;
+            line>>city>>color;
             c=string_to_city(city);
             col=string_to_color(color);
             city_colors[c]=col;
             cities_cubes[c]=0;
-            while(cities_file>>neighbor)
+            while(!line.eof())
             {
-                if(neighbor=="\n")
-                {
-                    break;
-                }
+                line>>neighbor;
                 n=string_to_city(neighbor);
                 neighbors.insert(n);
             }
@@ -104,7 +104,7 @@ namespace pandemic
     if(city== "Bangkok" ){return City:: Bangkok ;}
     if(city== "Beijing" ){return City:: Beijing ;}
     if(city== "Bogota" ){return City:: Bogota ;}
-    if(city== "BuenosAires " ){return City:: BuenosAires ;}
+    if(city== "BuenosAires" ){return City:: BuenosAires ;}
     if(city== "Cairo" ){return City:: Cairo ;}
     if(city== "Chennai" ){return City:: Chennai ;}
     if(city== "Chicago" ){return City:: Chicago ;}
@@ -145,7 +145,7 @@ namespace pandemic
     if(city== "Taipei" ){return City:: Taipei ;}
     if(city== "Tehran" ){return City:: Tehran ;}
     if(city== "Tokyo" ){return City:: Tokyo ;}
-    if(city== "Washington " ){return City:: Washington ;}
+    if(city== "Washington" ){return City:: Washington ;}
     return City::Algiers;
     }
 

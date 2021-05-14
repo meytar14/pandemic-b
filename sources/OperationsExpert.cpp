@@ -7,7 +7,7 @@ namespace pandemic
 Player& OperationsExpert::build()
 {
     
-    board.research_stations.insert(current_city);
+    board->research_stations.insert(current_city);
     
     return *this;
 }

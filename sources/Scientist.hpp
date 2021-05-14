@@ -9,9 +9,9 @@ namespace pandemic
         private:
         int n;
         public:
-        Scientist(Board b,City city,int n):Player(b,city,"Scientist")
+        Scientist(Board& b,City city,int num):Player(b,city,"Scientist")
         {
-           n=n;
+           n=num;
         }
         ~ Scientist()
         {

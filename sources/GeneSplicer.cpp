@@ -6,7 +6,7 @@ namespace pandemic
 {
     Player& GeneSplicer::discover_cure(Color color)
     {
-        if(board.research_stations.find(current_city)==board.research_stations.end())
+        if(board->research_stations.find(current_city)!=board->research_stations.end())
         {
             unordered_set<City>::iterator it;
             unordered_set<City> temp;
@@ -25,10 +25,16 @@ namespace pandemic
                 for(auto& elm: temp)
                 {
                     cards.erase(elm);
-                    board.not_in_deck.erase(elm);//return the card to the deck
+                    board->not_in_deck.erase(elm);//return the card to the deck
                 }
-                board.cured_desease.insert(color);
+                board->cured_desease.insert(color);
             }
+             else{
+            throw logic_error("dont have 5 cards");
+        }
+        }
+        else{
+            throw logic_error("dont have a research station");
         }
         return *this;
     }

@@ -22,7 +22,7 @@ public:
     
     unordered_map<City,int> cities_cubes;
     unordered_set<City> research_stations;
-    unordered_set<City> cured_cities;
+    //unordered_set<City> cured_cities;
     unordered_set<City> not_in_deck;
     unordered_set<Color> cured_desease;
     

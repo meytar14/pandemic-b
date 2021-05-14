@@ -7,7 +7,7 @@ namespace pandemic
     class OperationsExpert : public Player
     {
         public:
-        OperationsExpert(Board b,City city):Player(b,city,"OperationsExpert")
+        OperationsExpert(Board& b,City city):Player(b,city,"OperationsExpert")
         {
            
         }

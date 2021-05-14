@@ -5,18 +5,18 @@ namespace pandemic
 {
     Player& Scientist::discover_cure(Color color)
     {
-        if(board.research_stations.find(current_city)==board.research_stations.end())
+        if(board->research_stations.find(current_city)!=board->research_stations.end())
         {
             unordered_set<City>::iterator it;
             unordered_set<City> temp;
             bool is_five=false;
-            if(board.cured_desease.find(color)!=board.cured_desease.end())
-            {
-            return *this;
-            }
+            if(temp.size()==n)
+                {
+                    is_five=true;
+                }
             for(auto& elm: cards)
             {
-                if(board.city_colors[elm]==color)
+                if(board->city_colors[elm]==color)
                 {
                     temp.insert(elm);
                 }
@@ -31,13 +31,16 @@ namespace pandemic
                 for(auto& elm: temp)
                 {
                     cards.erase(elm);
-                    board.not_in_deck.erase(elm);//return the card to the deck
+                    board->not_in_deck.erase(elm);//return the card to the deck
                 }
-                board.cured_desease.insert(color);
+                board->cured_desease.insert(color);
             }
             else{
                 throw logic_error("you dont have 5 cards");
             }
+        }
+        else{
+            throw logic_error("there isnt a research station");
         }
         return *this;
     }

@@ -7,7 +7,7 @@ namespace pandemic
     class Researcher : public Player
     {
         public:
-        Researcher(Board b,City city):Player(b,city,"Researcher")
+        Researcher(Board& b,City city):Player(b,city,"Researcher")
         {
            
         }

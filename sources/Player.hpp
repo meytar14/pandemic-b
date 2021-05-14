@@ -9,14 +9,14 @@ class Player
 {
     protected:
     City current_city;
-    Board board;
+    Board* board;
     unordered_set<City> cards;
     string role_;
 
     public:
-    Player(Board b,City city,string r)
+    Player(Board& b,City city,string r)
     {
-        board=b;
+        board=&b;
         current_city=city;
         role_=r;
     }
